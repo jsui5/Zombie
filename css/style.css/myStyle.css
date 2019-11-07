@@ -1,0 +1,12 @@
+#score {
+    text-align: center;
+    font-size: 200%;
+}
+
+#reset {
+    font-size: 150%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 5%;
+}

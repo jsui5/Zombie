@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel='stylesheet'
+        type='text/css'
+        href='css/style.css/myStyle.css' />
+</head>
+
+<body>
+    <p id='score'>Score: 0</p>
+    <button id="reset">Reset</button>
+    <img id='zombie' src='images/zombieIdle.gif'>
+
+    <script>
+        let zombie = document.getElementById('zombie');
+        let windowWidth = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+        let windowHeight = window.innerHeight
+            || document.documentElement.clientHeight
+            || document.body.clientHeight;
+
+        function zombieSpawn() {
+            zombie.src = 'images/zombieIdle.gif'
+            zombie.style.position="absolute";
+            zombie.style.width="75px"
+            zombie.style.height="150px"
+            zombie.style.left=(windowWidth - 75) / 2 + "px";
+            zombie.style.top=(windowHeight - 150) / 2 + "px";
+        };
+
+        let deathSound = new Audio("src/deathSound.wav");
+        function zombieLocation() {
+            let zombieWidthBound = Math.floor(Math.random() * (windowWidth - 75));
+            let zombieHeightBound = Math.floor(Math.random() * (windowHeight - 150));
+            zombie.style.position = "absolute";
+            zombie.style.left = zombieWidthBound + "px";
+            zombie.style.right = zombieWidthBound + "px";
+            zombie.style.top = zombieHeightBound + "px";
+            zombie.style.bottom = zombieHeightBound + "px";
+            zombie.src = 'images/zombieIdle.gif'
+            deathSound.pause()
+            deathSound.currentTime = 0;
+            clicked = true;
+        };
+        
+        function spawnInterval() {
+            setInterval(zombieLocation, 2000);
+        };
+
+        let count = 0;
+        let clicked = true;
+        function killZombie () {
+            if (clicked){
+                zombie.src = 'images/zombieDeath.gif'
+                deathSound.play();
+                count += 1;
+                document.getElementById('score').innerHTML = "Score: " + count; 
+                clicked = false
+            }   
+        };
+
+        function resetGame() {
+            zombieSpawn();
+            count = 0
+            document.getElementById('score').innerHTML = "Score: 0";
+        };
+
+        function gameLogic(){
+            zombie.onclick = killZombie;
+            zombieSpawn();
+            spawnInterval()
+            document.getElementById("reset").onclick = resetGame
+        };
+
+        gameLogic()
+    </script>
+</body>
+
+</html>
