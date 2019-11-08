@@ -14,14 +14,14 @@
 
     <script>
         let zombie = document.getElementById('zombie');
-        let windowWidth = window.innerWidth
-            || document.documentElement.clientWidth
-            || document.body.clientWidth;
-        let windowHeight = window.innerHeight
-            || document.documentElement.clientHeight
-            || document.body.clientHeight;
 
         function zombieSpawn() {
+            let windowWidth = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+            let windowHeight = window.innerHeight
+            || document.documentElement.clientHeight
+            || document.body.clientHeight;
             zombie.src = 'images/zombieIdle.gif'
             zombie.style.position="absolute";
             zombie.style.width="75px"
@@ -32,6 +32,12 @@
 
         let deathSound = new Audio("src/deathSound.wav");
         function zombieLocation() {
+            let windowWidth = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+            let windowHeight = window.innerHeight
+            || document.documentElement.clientHeight
+            || document.body.clientHeight;
             let zombieWidthBound = Math.floor(Math.random() * (windowWidth - 75));
             let zombieHeightBound = Math.floor(Math.random() * (windowHeight - 150));
             zombie.style.position = "absolute";
